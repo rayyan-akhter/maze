@@ -1,0 +1,28 @@
+.cell {
+  width: 20px;
+  height: 20px;
+  border: solid 1px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../../Assets/path.avif);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.wall {
+  background-image: url("../../Assets/wall.jpg");
+}
+
+.start-node {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: red;
+}
+
+.target-node {
+  width: 18px;
+  height: 18px;
+  background-color: green;
+}

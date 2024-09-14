@@ -1,0 +1,13 @@
+.gridConatiner {
+  height: 100vh;
+  display: flex;
+  /* gap: 10px; */
+  justify-content: center;
+  align-items: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  /* gap: 10px; */
+}
