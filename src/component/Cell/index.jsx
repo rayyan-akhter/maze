@@ -1,8 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import { DIMENSIONS } from "../../utils/constants";
-import { getEdge, isEndNode, isStartNode } from "../../utils/functions";
-import { StartNode, TargetNode } from "../Grid";
+import { getEdge } from "../../utils/functions";
 import "./style.css";
+import { StartNode } from "../StartNode";
+import { TargetNode } from "../TargetNode";
 
 export const Cell = (props) => {
   const {

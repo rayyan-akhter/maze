@@ -4,20 +4,12 @@ import { getArray } from "../../utils/functions";
 import { Cell } from "../Cell";
 import "./style.css";
 
-export function StartNode() {
-  return <div className="start-node" />;
-}
-
-export function TargetNode() {
-  return <div className="target-node" />;
-}
-
 export const Grid = () => {
   const [startNodeCords, setStartNodeCords] = useState({
     i: 0,
     j: 0,
   });
-  const [targetNode, setTargetNode] = useState({
+  const [targetNode] = useState({
     i: DIMENSIONS.ROWS - 1,
     j: DIMENSIONS.COLS - 1,
   });
@@ -25,7 +17,7 @@ export const Grid = () => {
 
   return (
     <div className="gridConatiner">
-      {getArray(DIMENSIONS.ROWS).map((row, i) => (
+      {getArray(DIMENSIONS.ROWS).map((_row, i) => (
         <div className="row" key={i}>
           {getArray(DIMENSIONS.COLS).map((_, j) => (
             <Cell
