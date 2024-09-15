@@ -1,4 +1,4 @@
 export const DIMENSIONS = {
-  ROWS: 50,
-  COLS: 30,
+  ROWS: 35,
+  COLS: 18,
 };

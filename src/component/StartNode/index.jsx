@@ -1,5 +1,9 @@
 import React from "react";
-
-export function StartNode() {
-  return <div className="start-node" />;
+import rocket from "../../Assets/rocket.png";
+export function StartNode({ rocketClass }) {
+  return (
+    <div className="start-node">
+      <img src={rocket} alt="rocket" className={`rocketIcon ${rocketClass}`} />
+    </div>
+  );
 }
