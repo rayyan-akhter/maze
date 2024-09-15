@@ -37,7 +37,7 @@ export const Grid = () => {
     };
 
     initializeNodes();
-  }, [walls]);
+  }, [validCoordinates,walls]);
   useEffect(() => {
     const moveStartNode = (direction) => {
       const { i, j } = startNodeCords;
