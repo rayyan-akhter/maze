@@ -8,11 +8,13 @@
   background-image: url(../../Assets/path.avif);
   background-repeat: no-repeat;
   background-size: contain;
+  position: relative;
+
 }
 
 .wall {
+  border: none;
   background-image: url("../../Assets/wall.jpg");
-  
 }
 
 .start-node {
@@ -23,11 +25,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  transition: transform 1s ease-in-out, top 1s ease-in-out, left 1s ease-in-out;
 }
-.rocketIcon{
-    object-fit: contain;
-    width: 35px;
-    height: 35px;
+.rocketIcon {
+  object-fit: contain;
+  width: 35px;
+  height: 35px;
+  transition: transform 0.4s ease-in-out;
 }
 
 .target-node {
@@ -36,3 +41,18 @@
   background-color: yellow;
 }
 
+.rotate-right {
+  transform: rotate(90deg);
+}
+
+.rotate-down {
+  transform: rotate(180deg);
+}
+
+.rotate-left {
+  transform: rotate(-90deg);
+}
+
+.rotate-up {
+  transform: rotate(0deg);
+}

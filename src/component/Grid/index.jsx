@@ -7,11 +7,9 @@ import "./style.css";
 export const Grid = () => {
   const [startNodeCords, setStartNodeCords] = useState(GetRandomCoordinates());
   const [targetNode, setTargetNode] = useState(GetRandomCoordinates());
-  
   const [walls, setWall] = useState([]);
+  const [rocketClass, setRocketClass] = useState("rotate");
 
-
-  
   const validCoordinates = () => {
     let coords = GetRandomCoordinates();
     while (walls.includes(`${coords.i}-${coords.j}`)) {
@@ -26,9 +24,9 @@ export const Grid = () => {
       let targetNode = validCoordinates();
 
       while (
-        (walls.includes(`${startNode.i}-${startNode.j}`) ||
-          walls.includes(`${targetNode.i}-${targetNode.j}`) ||
-          (startNode.i === targetNode.i && startNode.j === targetNode.j))
+        walls.includes(`${startNode.i}-${startNode.j}`) ||
+        walls.includes(`${targetNode.i}-${targetNode.j}`) ||
+        (startNode.i === targetNode.i && startNode.j === targetNode.j)
       ) {
         startNode = validCoordinates();
         targetNode = validCoordinates();
@@ -45,19 +43,24 @@ export const Grid = () => {
       const { i, j } = startNodeCords;
       let newI = i;
       let newJ = j;
+      let newRocketClass = "rotate";
 
       switch (direction) {
         case "ArrowDown":
           newJ = j + 1;
+          newRocketClass = "rotate-down";
           break;
         case "ArrowUp":
           newJ = j - 1;
+          newRocketClass = "rotate-up";
           break;
         case "ArrowRight":
           newI = i + 1;
+          newRocketClass = "rotate-right";
           break;
         case "ArrowLeft":
           newI = i - 1;
+          newRocketClass = "rotate-left";
           break;
         default:
           return;
@@ -69,18 +72,18 @@ export const Grid = () => {
         newJ < 0 ||
         newJ >= DIMENSIONS.COLS
       )
-        return; 
+        return;
 
       const nextCoord = newI + "-" + newJ;
-      if (walls.includes(nextCoord)) return; 
+      if (walls.includes(nextCoord)) return;
 
       if (newI === targetNode.i && newJ === targetNode.j) {
         alert("You found the target!");
         window.location.reload();
       }
 
-
       setStartNodeCords({ i: newI, j: newJ });
+      setRocketClass(newRocketClass);
     };
 
     const handleKeyDown = (event) => {
@@ -108,6 +111,7 @@ export const Grid = () => {
               walls={walls}
               setWalls={setWall}
               targetNode={targetNode}
+              RocketClass={rocketClass}
             />
           ))}
         </div>

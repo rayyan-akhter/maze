@@ -14,6 +14,7 @@ export const Cell = (props) => {
     walls,
     setWalls,
     targetNode,
+    RocketClass
   } = props;
 
   const randomNumber = useRef(Math.random() * 1000);
@@ -22,7 +23,7 @@ export const Cell = (props) => {
   const startNode = i === startNodeCords.i && j === startNodeCords.j;
   const isTarget = i === targetNode.i && j === targetNode.j;
 
-  const isWall = randomNumber.current < 500 && !startNode && !isEdge;
+  const isWall = randomNumber.current < 400 && !startNode && !isEdge;
 
   useEffect(() => {
     if (isWall) {
@@ -84,7 +85,7 @@ export const Cell = (props) => {
 
   return (
     <div onClick={handleCellClick} className={`cell ${isWall && "wall"}`}>
-      {startNode && <StartNode />}
+      {startNode && <StartNode RocketClass={RocketClass} />}
       {isTarget && <TargetNode />}
     </div>
   );
