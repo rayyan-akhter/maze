@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { DIMENSIONS } from "../../utils/constants";
 import { getArray, GetRandomCoordinates } from "../../utils/functions";
 import { Cell } from "../Cell";
@@ -10,13 +10,13 @@ export const Grid = () => {
   const [walls, setWall] = useState([]);
   const [rocketClass, setRocketClass] = useState("rotate");
 
-  const validCoordinates = () => {
+  const validCoordinates = useCallback(() => {
     let coords = GetRandomCoordinates();
     while (walls.includes(`${coords.i}-${coords.j}`)) {
       coords = GetRandomCoordinates();
     }
     return coords;
-  };
+  },[walls]);
 
   useEffect(() => {
     const initializeNodes = () => {
