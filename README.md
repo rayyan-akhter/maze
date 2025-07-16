@@ -1,70 +1,128 @@
-# Getting Started with Create React App
+# 🚀 Maze Runner - Enhanced Edition
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, feature-rich maze navigation game built with React. Navigate your rocket through randomly generated mazes to reach the target!
 
-## Available Scripts
+## ✨ Features
 
-In the project directory, you can run:
+### 🎮 Gameplay
+- **Multiple Difficulty Levels**: Easy, Medium, and Hard with different wall densities
+- **Dual Controls**: Use arrow keys or click adjacent cells to move
+- **Real-time Scoring**: Score based on time, moves, and difficulty
+- **Best Score Tracking**: Persistent high scores saved locally
+- **Smooth Animations**: Rocket rotation and movement animations
 
-### `npm start`
+### 🎨 Visual Enhancements
+- **Modern UI Design**: Beautiful gradient backgrounds and smooth transitions
+- **Responsive Design**: Works perfectly on desktop and mobile devices
+- **Visual Feedback**: Hover effects, animations, and clear game states
+- **Professional Styling**: Clean, modern interface with attention to detail
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 📊 Game Statistics
+- **Live Timer**: Track your completion time
+- **Move Counter**: Monitor your efficiency
+- **Score Display**: Real-time score calculation
+- **Difficulty Indicator**: Clear level display
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 🏆 Game States
+- **Main Menu**: Choose difficulty and view instructions
+- **Gameplay**: Active maze navigation
+- **Victory Screen**: Celebrate wins with detailed statistics
+- **Score Persistence**: Best scores saved between sessions
 
-### `npm test`
+## 🎯 How to Play
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Select Difficulty**: Choose from Easy, Medium, or Hard
+2. **Navigate**: Use arrow keys or click adjacent cells
+3. **Avoid Walls**: Don't hit the dark wall tiles
+4. **Reach Target**: Find the glowing yellow target
+5. **Optimize**: Complete faster with fewer moves for higher scores!
 
-### `npm run build`
+## 🚀 Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
+- Node.js (version 14 or higher)
+- npm or yarn
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Installation
+```bash
+# Clone the repository
+git clone <repository-url>
+cd maze
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Install dependencies
+npm install
 
-### `npm run eject`
+# Start the development server
+npm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Available Scripts
+- `npm start` - Runs the app in development mode
+- `npm build` - Builds the app for production
+- `npm test` - Launches the test runner
+- `npm eject` - Ejects from Create React App (one-way operation)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🛠️ Technical Details
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Architecture
+- **React 18** with functional components and hooks
+- **CSS3** with modern features (Grid, Flexbox, Animations)
+- **Local Storage** for score persistence
+- **Responsive Design** with mobile-first approach
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Key Components
+- `Grid` - Main game logic and state management
+- `Cell` - Individual maze cells with interaction
+- `GameMenu` - Main menu interface
+- `GameStats` - Live statistics display
+- `GameOver` - Victory screen with results
 
-## Learn More
+### Game Logic
+- **Maze Generation**: Procedural wall placement based on difficulty
+- **Pathfinding**: Valid move detection and collision handling
+- **Scoring System**: Time-based scoring with move penalties
+- **State Management**: React hooks for game state
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🎨 Customization
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Difficulty Levels
+Modify `src/utils/constants.js` to adjust:
+- Wall probability percentages
+- Time bonuses
+- Score multipliers
 
-### Code Splitting
+### Visual Styling
+Customize the appearance by editing:
+- `src/component/*/style.css` - Component-specific styles
+- `src/App.css` - Global styles
+- Asset files in `src/Assets/` - Images and textures
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 📱 Browser Support
 
-### Analyzing the Bundle Size
+- Chrome (recommended)
+- Firefox
+- Safari
+- Edge
+- Mobile browsers (iOS Safari, Chrome Mobile)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🤝 Contributing
 
-### Making a Progressive Web App
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 📄 License
 
-### Advanced Configuration
+This project is open source and available under the [MIT License](LICENSE).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 🎉 Acknowledgments
 
-### Deployment
+- Built with Create React App
+- Icons and assets created for this project
+- Inspired by classic maze games
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Enjoy playing Maze Runner! 🚀**

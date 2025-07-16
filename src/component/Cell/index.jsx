@@ -1,6 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { DIMENSIONS } from "../../utils/constants";
-import { getEdge } from "../../utils/functions";
+import { getEdge, isValidMove } from "../../utils/functions";
 import { StartNode } from "../StartNode";
 import { TargetNode } from "../TargetNode";
 import "./style.css";
@@ -12,79 +12,70 @@ export const Cell = (props) => {
     startNodeCords,
     setStartNodeCords,
     walls,
-    setWalls,
     targetNode,
-    RocketClass
+    RocketClass,
+    setRocketClass,
+    gameState,
+    onMove,
+    onWin,
   } = props;
-
-  const randomNumber = useRef(Math.random() * 1000);
 
   const isEdge = getEdge(i, j, DIMENSIONS.ROWS, DIMENSIONS.COLS);
   const startNode = i === startNodeCords.i && j === startNodeCords.j;
   const isTarget = i === targetNode.i && j === targetNode.j;
-
-  const isWall = randomNumber.current < 400 && !startNode && !isEdge;
-
-  useEffect(() => {
-    if (isWall) {
-      const cord = i + "-" + j;
-      setWalls((prev) => [...prev, cord]);
-    }
-  }, [i, isWall, j, setWalls]);
+  const isWall = walls.includes(`${i}-${j}`) || isEdge; // Edge cells are always walls
 
   const handleCellClick = () => {
-    if (startNodeCords.i === i && j > startNodeCords.j) {
-      const nextCoord = startNodeCords.i + "-" + (startNodeCords.j + 1);
-      const isNextCellWall = walls.includes(nextCoord);
-      if (isNextCellWall) return;
-      const isNextCellTarget =
-        startNodeCords.i === targetNode.i &&
-        startNodeCords.j + 1 === targetNode.j;
-      if (isNextCellTarget) {
-        return alert("you found");
-      }
-      setStartNodeCords((prev) => ({ ...prev, j: prev.j + 1 }));
+    if (gameState !== 'playing' || isEdge) return; // Don't allow clicking on edges
+
+    // Calculate direction based on click position relative to start node
+    const deltaI = i - startNodeCords.i;
+    const deltaJ = j - startNodeCords.j;
+    
+    // Only allow movement to adjacent cells
+    if (Math.abs(deltaI) + Math.abs(deltaJ) !== 1) return;
+    
+    let newI = startNodeCords.i;
+    let newJ = startNodeCords.j;
+    let newRocketClass = "rotate";
+
+    if (deltaI === 1) {
+      newI = startNodeCords.i + 1;
+      newRocketClass = "rotate-right";
+    } else if (deltaI === -1) {
+      newI = startNodeCords.i - 1;
+      newRocketClass = "rotate-left";
+    } else if (deltaJ === 1) {
+      newJ = startNodeCords.j + 1;
+      newRocketClass = "rotate-down";
+    } else if (deltaJ === -1) {
+      newJ = startNodeCords.j - 1;
+      newRocketClass = "rotate-up";
     }
-    if (startNodeCords.i === i && j < startNodeCords.j) {
-      const nextCoord = startNodeCords.i + "-" + (startNodeCords.j - 1);
-      const isNextCellWall = walls.includes(nextCoord);
-      if (isNextCellWall) return;
-      const isNextCellTarget =
-        startNodeCords.i === targetNode.i &&
-        startNodeCords.j - 1 === targetNode.j;
-      if (isNextCellTarget) {
-        return alert("you found");
-      }
-      setStartNodeCords((prev) => ({ ...prev, j: prev.j - 1 }));
+
+    // Validate move
+    if (!isValidMove(newI, newJ, walls)) return;
+
+    // Check if target reached
+    if (newI === targetNode.i && newJ === targetNode.j) {
+      setStartNodeCords({ i: newI, j: newJ });
+      setRocketClass(newRocketClass);
+      onMove();
+      onWin();
+      return;
     }
-    if (i > startNodeCords.i && j === startNodeCords.j) {
-      const nextCoord = startNodeCords.i + 1 + "-" + startNodeCords.j;
-      const isNextCellWall = walls.includes(nextCoord);
-      if (isNextCellWall) return;
-      const isNextCellTarget =
-        startNodeCords.i + 1 === targetNode.i &&
-        startNodeCords.j === targetNode.j;
-      if (isNextCellTarget) {
-        return alert("you found");
-      }
-      setStartNodeCords((prev) => ({ ...prev, i: prev.i + 1 }));
-    }
-    if (i < startNodeCords.i && j === startNodeCords.j) {
-      const nextCoord = startNodeCords.i - 1 + "-" + startNodeCords.j;
-      const isNextCellWall = walls.includes(nextCoord);
-      if (isNextCellWall) return;
-      const isNextCellTarget =
-        startNodeCords.i - 1 === targetNode.i &&
-        startNodeCords.j === targetNode.j;
-      if (isNextCellTarget) {
-        return alert("you found");
-      }
-      setStartNodeCords((prev) => ({ ...prev, i: prev.i - 1 }));
-    }
+
+    // Make the move
+    setStartNodeCords({ i: newI, j: newJ });
+    setRocketClass(newRocketClass);
+    onMove();
   };
 
   return (
-    <div onClick={handleCellClick} className={`cell ${isWall && "wall"}`}>
+    <div 
+      onClick={handleCellClick} 
+      className={`cell ${isWall ? "wall" : ""} ${isEdge ? "edge" : ""}`}
+    >
       {startNode && <StartNode RocketClass={RocketClass} />}
       {isTarget && <TargetNode />}
     </div>
