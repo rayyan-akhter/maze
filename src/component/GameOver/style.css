@@ -10,6 +10,7 @@
   align-items: center;
   z-index: 2000;
   animation: fadeIn 0.3s ease-in-out;
+  padding: 20px;
 }
 
 .game-over-modal {
@@ -18,7 +19,7 @@
   border-radius: 15px;
   text-align: center;
   max-width: 400px;
-  width: 90%;
+  width: 100%;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
   animation: slideIn 0.3s ease-out;
   border: 3px solid #3498db;
@@ -171,22 +172,136 @@
 }
 
 /* Responsive design */
+@media (max-width: 1200px) {
+  .game-over-modal {
+    max-width: 350px;
+    padding: 1.8rem;
+  }
+  
+  .result-title {
+    font-size: 1.6rem;
+  }
+}
+
 @media (max-width: 768px) {
+  .game-over-overlay {
+    padding: 15px;
+  }
+  
   .game-over-modal {
     padding: 1.5rem;
-    margin: 1rem;
+    margin: 0;
   }
   
   .result-title {
     font-size: 1.5rem;
   }
   
+  .result-icon {
+    font-size: 3rem;
+  }
+  
+  .final-stats {
+    padding: 1.2rem;
+  }
+  
   .action-buttons {
     flex-direction: column;
     align-items: center;
+    gap: 0.8rem;
   }
   
   .btn {
     width: 200px;
+    padding: 0.9rem 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .game-over-overlay {
+    padding: 10px;
+  }
+  
+  .game-over-modal {
+    padding: 1.2rem;
+  }
+  
+  .result-title {
+    font-size: 1.3rem;
+  }
+  
+  .result-icon {
+    font-size: 2.5rem;
+  }
+  
+  .final-stats {
+    padding: 1rem;
+  }
+  
+  .stat-row {
+    padding: 0.4rem 0;
+  }
+  
+  .stat-row span:first-child {
+    font-size: 0.9rem;
+  }
+  
+  .stat-row span:last-child {
+    font-size: 0.9rem;
+  }
+  
+  .btn {
+    width: 180px;
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .game-over-modal {
+    padding: 1rem;
+  }
+  
+  .result-title {
+    font-size: 1.2rem;
+  }
+  
+  .result-icon {
+    font-size: 2.2rem;
+  }
+  
+  .final-stats {
+    padding: 0.8rem;
+  }
+  
+  .btn {
+    width: 160px;
+    padding: 0.7rem 0.9rem;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-height: 600px) {
+  .game-over-overlay {
+    padding: 10px;
+  }
+  
+  .game-over-modal {
+    padding: 1.2rem;
+  }
+  
+  .result-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .result-title {
+    font-size: 1.4rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .final-stats {
+    padding: 1rem;
+    margin-bottom: 1.5rem;
   }
 } 
